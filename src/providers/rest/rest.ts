@@ -10,8 +10,20 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class RestProvider {
 
+  apiUrl = 'http://201.186.52.47';
+
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
+  }
+
+  getTemperaturaHumedad(){
+    return new Promise(resolve => {
+      this.http.get(this.apiUrl+'/sensores/temperatura-humedad').subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
   }
 
 }
