@@ -7,6 +7,8 @@
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "http://201.186.52.47"   }
-  ]
+      "proxyUrl": "http://201.186.52.47"
+    }
+  ],
+  "pro_id": "4912be2f"
 }
