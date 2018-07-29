@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
+import { ToastController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -11,7 +12,8 @@ export class HomePage {
   temperaturaHumedad: any;
 
   constructor(public navCtrl: NavController,
-              public restProvider: RestProvider) {
+              public restProvider: RestProvider,
+              public toastCtrl: ToastController) {
                 this.getTemperaturaHumedad();
   }
 
@@ -26,5 +28,16 @@ export class HomePage {
     .then(data => {
       this.temperaturaHumedad = Array.of(data);
     });
+  }
+
+  actualizarDatos(position: string = "bottom") {
+    this.getTemperaturaHumedad();
+    let toast = this.toastCtrl.create({
+      message: 'Datos actualizar. Intentos: '+this.temperaturaHumedad[0].intentos,
+      duration: 2000,
+      position: position
+    });
+
+    toast.present(toast);
   }
 }
