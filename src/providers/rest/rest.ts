@@ -16,15 +16,27 @@ export class RestProvider {
     console.log('Hello RestProvider Provider');
   }
 
-  getTemperaturaHumedad(){
+  makePromise(url){
     return new Promise(resolve => {
-      this.http.get('http://201.186.52.47/sensores/temperatura-humedad').subscribe(data => {
+      this.http.get(url).subscribe(data => {
         resolve((data));
       }, err => {
         console.log("ERROOOOR");
         console.log(err.message);
       });
     });
+  }
+
+  getTemperaturaHumedad(){
+    return this.makePromise('http://192.168.1.10/sensores/temperatura-humedad');
+  }
+
+  encenderLed(ledPin){
+    return this.makePromise('http://192.168.1.10/sensores/encender_led/'+ledPin);
+  }
+
+  apagarLed(ledPin){
+    return this.makePromise('http://192.168.1.10/sensores/apagar_led/'+ledPin);
   }
 
 }

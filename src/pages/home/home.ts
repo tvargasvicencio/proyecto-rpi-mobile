@@ -40,4 +40,22 @@ export class HomePage {
 
     toast.present(toast);
   }
+
+  encenderLed(ledPin){
+    this.restProvider.encenderLed(ledPin);
+  }
+
+  apagarLed(ledPin){
+    this.restProvider.apagarLed(ledPin);
+  }
+
+  toggleLuces(e){
+    if (e.value==true) {
+      this.encenderLed(40);
+    }
+    else{
+      this.apagarLed(40);
+    }
+  }
+
 }
